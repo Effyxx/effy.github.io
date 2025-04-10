@@ -29,10 +29,15 @@
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             backdrop-filter: blur(5px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         h1 {
             color: #f28282;
             margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .profile-img {
             width: 200px;
@@ -41,6 +46,10 @@
             margin: 20px auto;
             display: block;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
         }
         .section {
             background-color: rgba(255, 255, 255, 0.6);
@@ -49,6 +58,10 @@
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+        .section:hover {
+            transform: translateY(-5px);
         }
         .social-links {
             display: flex;
@@ -61,11 +74,113 @@
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 5px;
-            background-color: #f0f0f0;
-            transition: background-color 0.3s;
+            background-color: rgba(240, 240, 240, 0.8);
+            transition: all 0.3s;
         }
         .social-links a:hover {
-            background-color: #e0e0e0;
+            background-color: #f28282;
+            color: white;
+            transform: scale(1.1);
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .skill-tag {
+            background-color: rgba(242, 130, 130, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #f28282;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #f28282;
+        }
+        .cat-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .cat-fact {
+            background-color: rgba(242, 130, 130, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+        .meow-button {
+            background-color: #f28282;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        .meow-button:hover {
+            transform: scale(1.1);
+            background-color: #ff6b6b;
+        }
+        .cat-emoji {
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .cat-emoji:hover {
+            transform: scale(1.5) rotate(360deg);
+        }
+        .cat-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .cat-drop {
+            position: absolute;
+            font-size: 2em;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
@@ -73,17 +188,49 @@
     <div class="container">
         <header>
             <h1>小咪</h1>
+            <div style="text-align: center; margin: 10px 0;">
+                <span class="cat-emoji" onclick="createCatRain()">🐱</span>
+            </div>
             <p>欢迎来到我的个咪主页</p>
             <img src="mi pic1.jpg" alt="小咪的照片" class="profile-img">
+            <div class="quote">"喵喵喵~ 生活就是吃吃睡睡，偶尔捣蛋"</div>
         </header>
 
         <div class="section">
-            <h2>关于我</h2>
+            <h2>🐱 关于我</h2>
             <p>泥嚎！窝是小咪，一个热爱生活、讨厌学习的咪。我喜欢探索新事物，吃甜甜，晒太阳，睡大觉。咪平等地讨厌所有人。</p>
+            <div class="skills">
+                <span class="skill-tag">睡觉专家</span>
+                <span class="skill-tag">美食鉴赏家</span>
+                <span class="skill-tag">捣蛋能手</span>
+                <span class="skill-tag">撒娇达人</span>
+            </div>
         </div>
 
         <div class="section">
-            <h2>兴趣爱好</h2>
+            <h2>📅 喵生经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2020年</h3>
+                    <p>来到这个世界，开始喵生</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2021年</h3>
+                    <p>学会捣蛋，成为家里的小霸王</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022年</h3>
+                    <p>开始探索世界，发现美食的乐趣</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2023年</h3>
+                    <p>成为一只成熟的喵，但依然保持童心</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>☕️ 兴趣爱好</h2>
             <ul>
                 <li>阅读（即便咪不识字）</li>
                 <li>旅行（咪喜欢溜达）</li>
@@ -95,13 +242,54 @@
         </div>
 
         <div class="section">
-            <h2>联系方式（没事勿扰，咪在睡觉）</h2>
+            <h2>📚 喵咪小知识</h2>
+            <div class="cat-facts">
+                <div class="cat-fact">
+                    <h3>最爱食物</h3>
+                    <p>小鱼干、猫罐头、鸡胸肉</p>
+                </div>
+                <div class="cat-fact">
+                    <h3>日常作息</h3>
+                    <p>白天睡觉，晚上蹦迪</p>
+                </div>
+                <div class="cat-fact">
+                    <h3>特殊技能</h3>
+                    <p>瞬间消失术、卖萌术</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📱 Call me maybe（没事勿扰，咪在睡觉）</h2>
             <div class="social-links">
                 <a href="#">微信（不加）</a>
-                <a href="#">微博（不看）</a>
+                <a href="#">手机（不接）</a>
                 <a href="#">邮箱（不回）</a>
             </div>
         </div>
     </div>
+
+    <script>
+        function createCatRain() {
+            const catRain = document.createElement('div');
+            catRain.className = 'cat-rain';
+            document.body.appendChild(catRain);
+            
+            const catEmojis = ['🐱'];
+            
+            for (let i = 0; i < 20; i++) {
+                const catDrop = document.createElement('div');
+                catDrop.className = 'cat-drop';
+                catDrop.textContent = catEmojis[Math.floor(Math.random() * catEmojis.length)];
+                catDrop.style.left = Math.random() * 100 + 'vw';
+                catDrop.style.animationDuration = Math.random() * 2 + 1 + 's';
+                catRain.appendChild(catDrop);
+                
+                setTimeout(() => catDrop.remove(), 3000);
+            }
+            
+            setTimeout(() => catRain.remove(), 3000);
+        }
+    </script>
 </body>
 </html> 
